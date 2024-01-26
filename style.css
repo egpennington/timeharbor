@@ -382,6 +382,7 @@ h2 {
 /* Mobile Screens of 768px */
 @media (max-width: 768px) {
     .aside {
+        display: none;
         position: absolute;
         top: 0;
         left: 250px;
