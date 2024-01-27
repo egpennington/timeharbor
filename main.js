@@ -7,10 +7,7 @@ function updateDate() {
     const formattedDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
     dateDiv.textContent = `Today: ${formattedDate}`;
 }
-
-// Call the function to update the date content when the page loads
 updateDate();
-
 
 // Select the container where you want to append the generated HTML
 const contentActivityContainer = document.querySelector('.content-activity');
@@ -33,14 +30,33 @@ for (let category of userActivities) {
         const activityDiv = document.createElement('div');
         activityDiv.classList.add('content-main');
 
-        // Create an img element for the ellipse checkbox
-        const ellipseImg = document.createElement('img');
-        ellipseImg.src = "/img/Ellipse 8.svg";
-        ellipseImg.alt = "ellipse checkbox";
-        ellipseImg.classList.add('ellipse');
-        activityDiv.appendChild(ellipseImg);
+  // Create an img element for the ellipse checkbox
+const ellipseImg = document.createElement('img');
+ellipseImg.src = "/img/Ellipse8.svg";
+ellipseImg.alt = "ellipse checkbox";
+ellipseImg.classList.add('ellipse');
+activityDiv.appendChild(ellipseImg);
 
-        // Create a div element for the content inner
+// Add the click event listener to each ellipse element separately
+ellipseImg.addEventListener('click', function() {
+    console.log("ellipse clicked!");
+    console.log("current source: ",this.src)
+    // const contentInner = this.closest('.content-inner'); // Find the closest parent element with class 'content-inner'
+    contentInnerDiv.classList.toggle('darken'); // Toggle the 'darken' class on the content-inner element
+    if (this.src.includes("Ellipse8.svg")) {
+        this.src = "./img/favicon.png"; // Change the source to your checkmark favicon.
+        this.style.width = '55px';
+        this.style.height = '55px';
+        this.parentElement.style.display = 'flex'; // Set the parent's display to flex
+        this.parentElement.style.justifyContent = 'center'; // Center horizontally
+        this.parentElement.style.alignItems = 'center';
+    } else {
+        this.src = "/img/Ellipse8.svg"; // Change it back to the original source
+    }
+});
+
+
+// Create a div element for the content inner
         const contentInnerDiv = document.createElement('div');
         contentInnerDiv.classList.add('content-inner');
 
@@ -102,41 +118,6 @@ trashImg.alt = "delete trash can image";
 trashImg.classList.add('icon-edit');
 contentDescriptionEditDiv.appendChild(trashImg);
 
-
-        // // Create a div element for the content description
-        // const contentDescriptionDiv = document.createElement('div');
-        // contentDescriptionDiv.classList.add('content-description');
-
-        // const contentParaDiv = document.createElement('div')
-        // contentParaDiv.classList.add('content-para')
-
-        // // Create a p element for the task name
-        // for (let task of activityType.Tasks) {
-        //     console.log("Tasks: ", task.taskName)
-        //     const taskNameParagraph = document.createElement('p');
-        //     taskNameParagraph.classList.add('task-name');
-        //     taskNameParagraph.textContent = task.taskName; // You can dynamically set the task name here based on your data
-        //     // contentDescriptionDiv.appendChild(taskNameParagraph);
-        //     contentParaDiv.appendChild(taskNameParagraph)
-        // }
-        
-        // // Create a div element for the content description edit
-        // const contentDescriptionEditDiv = document.createElement('div');
-        // contentDescriptionEditDiv.classList.add('content-description-edit');
-
-        // // Create img elements for the edit pencil and trash icons
-        // const editPencilImg = document.createElement('img');
-        // editPencilImg.src = "/img/mynaui_pencil.svg";
-        // editPencilImg.alt = "edit pencil image";
-        // editPencilImg.classList.add('icon-edit');
-        // contentDescriptionEditDiv.appendChild(editPencilImg);
-
-        // const trashImg = document.createElement('img');
-        // trashImg.src = "/img/ph_trash.svg";
-        // trashImg.alt = "delete trash can image";
-        // trashImg.classList.add('icon-edit');
-        // contentDescriptionEditDiv.appendChild(trashImg);
-
         // Append the content description edit div to the content description div
         contentDescriptionDiv.appendChild(contentDescriptionEditDiv);
 
@@ -153,12 +134,6 @@ contentDescriptionEditDiv.appendChild(trashImg);
     // Append the category div to the content activity container
     contentActivityContainer.appendChild(categoryDiv);
 }
-
-
-
-
-
-
 
     // Select the container where you want to append the generated HTML
     const dailyChecklist = document.querySelector('.daily-checklist');
@@ -193,13 +168,6 @@ contentDescriptionEditDiv.appendChild(trashImg);
         dailyChecklist.appendChild(categoryDiv);
     }
 
-
-
-
-
-
-
-
 for (let category of userActivities) {
     console.log("catagory: ", category.categoryName)
 
@@ -212,24 +180,6 @@ for (let category of userActivities) {
 
     }
 }
-
-
-// const categoryNameEl = document.getElementById("category-name-el");
-
-// for (let category of userActivities) {
-//     console.log("category: ", category.categoryName);
-//     const categoryName = document.createElement("span");
-//     categoryName.textContent = category.categoryName;
-//     categoryNameEl.appendChild(categoryName);
-// }
-
-// const categoryNameEl = document.getElementById("categoryNameEl")
-
-// for (let category of userActivities) {
-//     console.log("category: ", category.categoryName)
-//     categoryNameEl.textContent = category.categoryName
-
-// }
 
 // Hamburger Menu Display on Mobile
 document.addEventListener('DOMContentLoaded', function () {
